@@ -1,34 +1,47 @@
+import { Suspense } from "react";
+import { parseISO } from "date-fns";
+import { auth } from "@clerk/nextjs/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { WorkoutDatePicker } from "./_components/workout-date-picker";
+import { getWorkoutsForUserOnDate } from "@/data/workouts";
 
-const placeholderWorkouts = [
-  { id: 1, name: "Back Squat", sets: 4, reps: 5, weight: "185 lb" },
-  { id: 2, name: "Romanian Deadlift", sets: 3, reps: 8, weight: "135 lb" },
-  { id: 3, name: "Leg Press", sets: 3, reps: 12, weight: "270 lb" },
-];
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const { date: dateParam } = await searchParams;
+  const date =
+    typeof dateParam === "string" ? parseISO(dateParam) : new Date();
 
-export default function DashboardPage() {
+  const { userId } = await auth();
+  const workouts = await getWorkoutsForUserOnDate(userId!, date);
+
   return (
     <main className="max-w-2xl mx-auto px-4 py-8 space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Workout Log</h1>
-        <WorkoutDatePicker />
+        <Suspense>
+          <WorkoutDatePicker />
+        </Suspense>
       </div>
 
       <div className="space-y-3">
-        {placeholderWorkouts.length === 0 ? (
+        {workouts.length === 0 ? (
           <p className="text-sm text-muted-foreground text-center py-12">
             No workouts logged for this date.
           </p>
         ) : (
-          placeholderWorkouts.map((workout) => (
+          workouts.map((workout) => (
             <Card key={workout.id}>
               <CardHeader className="pb-1 pt-4 px-5">
-                <CardTitle className="text-base">{workout.name}</CardTitle>
+                <CardTitle className="text-base">
+                  {workout.name ?? "Untitled Workout"}
+                </CardTitle>
               </CardHeader>
               <CardContent className="px-5 pb-4">
                 <p className="text-sm text-muted-foreground">
-                  {workout.sets} sets &times; {workout.reps} reps &mdash; {workout.weight}
+                  {workout.startedAt.toLocaleDateString()}
                 </p>
               </CardContent>
             </Card>

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { format } from "date-fns";
+import { useRouter, useSearchParams } from "next/navigation";
+import { format, parseISO } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -9,7 +9,18 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils";
 
 export function WorkoutDatePicker() {
-  const [date, setDate] = useState<Date>(new Date());
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const dateParam = searchParams.get("date");
+  const date = dateParam ? parseISO(dateParam) : new Date();
+
+  function handleSelect(selected: Date | undefined) {
+    if (!selected) return;
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("date", format(selected, "yyyy-MM-dd"));
+    router.replace(`?${params.toString()}`, { scroll: false });
+  }
 
   return (
     <Popover>
@@ -26,7 +37,7 @@ export function WorkoutDatePicker() {
         <Calendar
           mode="single"
           selected={date}
-          onSelect={(d) => d && setDate(d)}
+          onSelect={handleSelect}
         />
       </PopoverContent>
     </Popover>
