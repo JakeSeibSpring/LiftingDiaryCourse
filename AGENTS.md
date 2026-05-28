@@ -7,3 +7,7 @@ IMPORTANT: Before generating ANY code, always check the `/docs` directory for a 
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
+
+## Code Generation Guidelines
+
+- Before creating any new routes or pages, read `/docs/routing.md` to understand the `/dashboard` convention, route protection enforcement via middleware, and how Clerk authentication is configured in `src/proxy.ts`.
