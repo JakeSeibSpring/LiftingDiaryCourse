@@ -1,0 +1,293 @@
+{
+  "metadata": {
+    "skill_name": "workout-chart",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-29T19:20:29Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "workout_chart.png is created in the outputs directory",
+          "passed": true,
+          "evidence": "File present in outputs/workout_chart.png"
+        },
+        {
+          "text": "The skill uses the Neon MCP tool or bundled script rather than writing everything from scratch",
+          "passed": true,
+          "evidence": "Transcript confirms: mcp__neon__run_sql used for query, then bundled generate_chart.py called"
+        },
+        {
+          "text": "The chart covers a 12-month span",
+          "passed": true,
+          "evidence": "Chart image shows Jun 2025 through May 2026 \u2014 12 labeled months on X axis"
+        },
+        {
+          "text": "The user is told where the file was saved",
+          "passed": true,
+          "evidence": "Transcript confirms user is told: chart saved to /Users/jacob.seib/liftingdiarycourse/workout_chart.png"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "workout_chart.png is created in the outputs directory",
+          "passed": true,
+          "evidence": "File present in outputs/workout_chart.png"
+        },
+        {
+          "text": "The skill uses the Neon MCP tool or bundled script rather than writing everything from scratch",
+          "passed": true,
+          "evidence": "Transcript confirms: mcp__neon__run_sql used for query, then bundled generate_chart.py called"
+        },
+        {
+          "text": "The chart covers a 12-month span",
+          "passed": true,
+          "evidence": "Chart image shows Jun 2025 through May 2026 \u2014 12 labeled months on X axis"
+        },
+        {
+          "text": "The user is told where the file was saved",
+          "passed": true,
+          "evidence": "Transcript confirms user is told: chart saved to /Users/jacob.seib/liftingdiarycourse/workout_chart.png"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "workout_chart.png is created in the outputs directory",
+          "passed": true,
+          "evidence": "File present in outputs/workout_chart.png"
+        },
+        {
+          "text": "The skill uses the Neon MCP tool or bundled script rather than writing everything from scratch",
+          "passed": true,
+          "evidence": "Transcript confirms: mcp__neon__run_sql used for query, then bundled generate_chart.py called"
+        },
+        {
+          "text": "The chart covers a 12-month span",
+          "passed": true,
+          "evidence": "Chart image shows Jun 2025 through May 2026 \u2014 12 labeled months on X axis"
+        },
+        {
+          "text": "The user is told where the file was saved",
+          "passed": true,
+          "evidence": "Transcript confirms user is told: chart saved to /Users/jacob.seib/liftingdiarycourse/workout_chart.png"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 2,
+        "failed": 2,
+        "total": 4,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "workout_chart.png is created in the outputs directory",
+          "passed": true,
+          "evidence": "File present in outputs/workout_chart.png"
+        },
+        {
+          "text": "The skill uses the Neon MCP tool or bundled script rather than writing everything from scratch",
+          "passed": false,
+          "evidence": "Agent wrote its own matplotlib script inline; bundled script not used"
+        },
+        {
+          "text": "The chart covers a 12-month span",
+          "passed": false,
+          "evidence": "Chart shows only May 2026 \u2014 single bar, no zero-padded prior months"
+        },
+        {
+          "text": "The user is told where the file was saved",
+          "passed": true,
+          "evidence": "Transcript shows agent reported file location"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 4,
+        "total": 4,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "workout_chart.png is created",
+          "passed": false,
+          "evidence": "No PNG generated \u2014 agent blocked by missing Bash permission"
+        },
+        {
+          "text": "The chart has month labels on the X axis",
+          "passed": false,
+          "evidence": "No chart was produced"
+        },
+        {
+          "text": "The chart has workout counts on the Y axis",
+          "passed": false,
+          "evidence": "No chart was produced"
+        },
+        {
+          "text": "The user is informed of the output file path",
+          "passed": false,
+          "evidence": "Agent could not complete the task"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "workout_chart.png is created",
+          "passed": true,
+          "evidence": "File present in outputs/workout_chart.png"
+        },
+        {
+          "text": "The database is actually queried (not hardcoded data)",
+          "passed": true,
+          "evidence": "Transcript shows mcp__neon__run_sql was used to fetch live data"
+        },
+        {
+          "text": "The chart covers at least the current month's data",
+          "passed": true,
+          "evidence": "May 2026 bar shows 5 workouts"
+        },
+        {
+          "text": "The user is told the chart was saved and where",
+          "passed": true,
+          "evidence": "Transcript confirms file path was reported"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.5,
+        "stddev": 0.5,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.50",
+      "time_seconds": "+0.0",
+      "tokens": "+0"
+    }
+  },
+  "notes": []
+}

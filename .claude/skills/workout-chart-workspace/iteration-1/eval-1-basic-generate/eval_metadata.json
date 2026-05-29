@@ -1,0 +1,6 @@
+{
+  "eval_id": 1,
+  "eval_name": "basic-generate",
+  "prompt": "generate my workout chart",
+  "assertions": []
+}

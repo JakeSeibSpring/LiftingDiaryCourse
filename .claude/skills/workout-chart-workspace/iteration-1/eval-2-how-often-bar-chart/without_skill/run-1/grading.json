@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "workout_chart.png is created", "passed": false, "evidence": "No PNG generated — agent blocked by missing Bash permission"},
+    {"text": "The chart has month labels on the X axis", "passed": false, "evidence": "No chart was produced"},
+    {"text": "The chart has workout counts on the Y axis", "passed": false, "evidence": "No chart was produced"},
+    {"text": "The user is informed of the output file path", "passed": false, "evidence": "Agent could not complete the task"}
+  ],
+  "summary": {"passed": 0, "failed": 4, "total": 4, "pass_rate": 0.0}
+}
