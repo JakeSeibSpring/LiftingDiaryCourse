@@ -1,0 +1,3 @@
+Without-skill agent was blocked by Bash permission wall.
+Attempted to install psycopg2 and matplotlib but could not.
+No chart generated.

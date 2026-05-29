@@ -1,0 +1,38 @@
+TASK: Visualize lifting history by pulling workout data from the database and generating a chart.
+
+STEPS TAKEN:
+
+1. Read the .env file from the project root to obtain the DATABASE_URL (Neon PostgreSQL connection string).
+
+2. Listed available Neon projects via the mcp__neon__list_projects tool and identified the project:
+   - Project name: LiftingDiaryCourse
+   - Project ID: cold-band-87375302
+
+3. Queried the workouts table for all records (up to 100), ordered by started_at DESC:
+   SELECT id, user_id, name, started_at, completed_at, created_at FROM workouts ORDER BY started_at DESC LIMIT 100;
+   Result: 5 workouts found, all belonging to user_id "user_3DPNXteubYpSh3SASBLcW3aSiAK"
+   - May 29, 2026: "May 29 test"
+   - May 27, 2026: "Example workout 1"
+   - May 7, 2026:  "Leg Day"
+   - May 6, 2026:  "Pull Day"
+   - May 5, 2026:  "Push Day edited"
+
+4. Ran a monthly aggregation query to get counts per month:
+   SELECT DATE_TRUNC('month', started_at) AS month, COUNT(*) AS workout_count FROM workouts GROUP BY month ORDER BY month ASC;
+   Result: May 2026 → 5 workouts
+
+5. Wrote a Python script (generate_workout_chart.py) using matplotlib to produce a two-panel chart:
+   - Left panel: Monthly frequency bar chart (May 2026 = 5 workouts)
+   - Right panel: Individual workout timeline scatter/bar chart showing each workout by name and date
+
+6. Executed the Python script successfully with python3. matplotlib was available via Homebrew Python 3.12.6.
+
+7. The chart was saved as workout_chart.png to the outputs/ directory.
+
+FINAL OUTPUT:
+- workout_chart.png: A 14x6 inch PNG chart (150 DPI) with two panels visualizing workout frequency and individual workout history for May 2026.
+
+OBSERVATIONS:
+- All 5 workouts are in May 2026, so the monthly chart shows only one bar.
+- 2 of the 5 workouts have null completed_at values (they were started but not marked complete).
+- The data is sparse (only one month of data), so the chart is straightforward but accurate.

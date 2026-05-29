@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "workout_chart.png is created in the outputs directory", "passed": true, "evidence": "File present in outputs/workout_chart.png"},
+    {"text": "The skill uses the Neon MCP tool or bundled script rather than writing everything from scratch", "passed": false, "evidence": "Agent wrote its own matplotlib script inline; bundled script not used"},
+    {"text": "The chart covers a 12-month span", "passed": false, "evidence": "Chart shows only May 2026 — single bar, no zero-padded prior months"},
+    {"text": "The user is told where the file was saved", "passed": true, "evidence": "Transcript shows agent reported file location"}
+  ],
+  "summary": {"passed": 2, "failed": 2, "total": 4, "pass_rate": 0.5}
+}

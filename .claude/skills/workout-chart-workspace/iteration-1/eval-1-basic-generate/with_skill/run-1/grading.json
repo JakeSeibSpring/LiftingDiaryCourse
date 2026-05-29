@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "workout_chart.png is created in the outputs directory", "passed": true, "evidence": "File present in outputs/workout_chart.png"},
+    {"text": "The skill uses the Neon MCP tool or bundled script rather than writing everything from scratch", "passed": true, "evidence": "Transcript confirms: mcp__neon__run_sql used for query, then bundled generate_chart.py called"},
+    {"text": "The chart covers a 12-month span", "passed": true, "evidence": "Chart image shows Jun 2025 through May 2026 — 12 labeled months on X axis"},
+    {"text": "The user is told where the file was saved", "passed": true, "evidence": "Transcript confirms user is told: chart saved to /Users/jacob.seib/liftingdiarycourse/workout_chart.png"}
+  ],
+  "summary": {"passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0}
+}

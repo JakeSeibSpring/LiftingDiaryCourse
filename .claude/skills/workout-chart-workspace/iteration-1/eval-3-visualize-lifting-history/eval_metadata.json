@@ -1,0 +1,6 @@
+{
+  "eval_id": 3,
+  "eval_name": "visualize-lifting-history",
+  "prompt": "I want to visualize my lifting history — can you pull my workout data from the database and make a chart?",
+  "assertions": []
+}

@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "workout_chart.png is created", "passed": true, "evidence": "File present in outputs/workout_chart.png"},
+    {"text": "The database is actually queried (not hardcoded data)", "passed": true, "evidence": "Transcript shows mcp__neon__run_sql was used to fetch live data"},
+    {"text": "The chart covers at least the current month's data", "passed": true, "evidence": "May 2026 bar shows 5 workouts"},
+    {"text": "The user is told the chart was saved and where", "passed": true, "evidence": "Transcript confirms file path was reported"}
+  ],
+  "summary": {"passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0}
+}
