@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { parseISO } from "date-fns";
 import { auth } from "@clerk/nextjs/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,18 +34,24 @@ export default async function DashboardPage({
           </p>
         ) : (
           workouts.map((workout) => (
-            <Card key={workout.id}>
-              <CardHeader className="pb-1 pt-4 px-5">
-                <CardTitle className="text-base">
-                  {workout.name ?? "Untitled Workout"}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="px-5 pb-4">
-                <p className="text-sm text-muted-foreground">
-                  {workout.startedAt.toLocaleDateString()}
-                </p>
-              </CardContent>
-            </Card>
+            <Link
+              key={workout.id}
+              href={`/dashboard/workout/${workout.id}`}
+              className="block"
+            >
+              <Card>
+                <CardHeader className="pb-1 pt-4 px-5">
+                  <CardTitle className="text-base">
+                    {workout.name ?? "Untitled Workout"}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="px-5 pb-4">
+                  <p className="text-sm text-muted-foreground">
+                    {workout.startedAt.toLocaleDateString()}
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
           ))
         )}
       </div>
