@@ -3,6 +3,7 @@ import Link from "next/link";
 import { parseISO } from "date-fns";
 import { auth } from "@clerk/nextjs/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { WorkoutDatePicker } from "./_components/workout-date-picker";
 import { getWorkoutsForUserOnDate } from "@/data/workouts";
 
@@ -22,9 +23,14 @@ export default async function DashboardPage({
     <main className="max-w-2xl mx-auto px-4 py-8 space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Workout Log</h1>
-        <Suspense>
-          <WorkoutDatePicker />
-        </Suspense>
+        <div className="flex items-center gap-3">
+          <Suspense>
+            <WorkoutDatePicker />
+          </Suspense>
+          <Button asChild>
+            <Link href="/dashboard/workout/new">Log New Workout</Link>
+          </Button>
+        </div>
       </div>
 
       <div className="space-y-3">
